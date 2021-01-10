@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <nav id="mainNav">
+        <div class="header__logo">
+            <h1>Bytes<span class="logo-center">Of</span>Advice</h1>
+        </div>
+        <ul class="header__content">
+            <li class="header__link"><a class="<%= path === '/' ? 'active' : '' %>" href="/">Blog</a></li>
+            <li class="header__link"><a class="<%= path === '/services' ? 'active' : '' %>" href="/services">Services</a></li> 
+        </ul>
+        <hr>
+    </nav>
+
+    <section class="blog__section">
+
+    </section>
+
+</body>
+</html>

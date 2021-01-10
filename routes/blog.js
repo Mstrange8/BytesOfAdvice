@@ -4,6 +4,10 @@ const express = require('express');
 
 const router = express.Router();
 
-const adminController = require('./blog');
+const blogController = require('../controllers/blog');
+
+router.get('/', blogController.getBlogPage);
+
+router.post('/', blogController.getBlogPage);
 
 module.exports = router;
