@@ -1,0 +1,9 @@
+.services__section {
+    height: 100rem;
+    background-color:white;
+    width: 60%;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 8rem;
+    padding: 2rem;
+}
