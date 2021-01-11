@@ -1,30 +1,29 @@
+const Blog = require('../models/blog');
+
 exports.getBlogs = (req, res, next) => {
-    Education.fetchAll(education => {
-        res.render('admin/public/education', {
-            pageTitle: '/Admin Education',
-            path: '/admin/education',
-            eds: education
+    Blog.fetchAll(blogs => {
+        res.render('admin/blog', {
+            pageTitle: '/Admin Blog',
+            path: '/admin/blogs',
+            blogs: blogs
         });
     });
 };
 
 exports.getAddBlog = (req, res, next) => {
-    res.render('admin/public/add-education', {
-        pageTitle: 'Add Education',
-        path: '/admin/add-education',
+    res.render('admin/add-blog', {
+        pageTitle: 'Add Blog',
+        path: '/admin/add-blog',
         editing: false
     });
 };
 
 exports.postAddBlog = (req, res, next) => {
     const order = req.body.order;
-    const school = req.body.school;
-    const date = req.body.date;
-    const degree = req.body.degree;
-    const description = req.body.description;
-    const education = new Education(null, order, school, date, degree, description);
-    education.save();
-    res.redirect('/admin/education');
+    const blog = req.body.blog;
+    const newBlog = new Blog(null, order, blog);
+    newBlog.save();
+    res.redirect('/admin/blogs');
 };
 
 exports.getEditBlog = (req, res, next) => {
@@ -32,41 +31,35 @@ exports.getEditBlog = (req, res, next) => {
     if (!editMode) {
         res.redirect('/');
     }
-    const eduId = req.params.educationId;
-    Education.findById(eduId, education => {
-        if (!education) {
+    const blogId = req.params.blogId;
+    Blog.findById(blogId, blog => {
+        if (!blog) {
             return res.redirect('/');
         }
-        res.render('admin/public/add-education', {
-            pageTitle: 'Edit Education',
-            path: '/admin/edit-education',
+        res.render('admin/add-blog', {
+            pageTitle: 'Edit Blog',
+            path: '/admin/edit-blog',
             editing: editMode,
-            ed: education
+            blog: blog
         });
     });
 };
 
 exports.postEditBlog = (req, res, next) => {
-    const id = req.body.educationId;
+    const id = req.body.blogId;
     const order = req.body.order;
-    const school = req.body.school;
-    const date = req.body.date;
-    const degree = req.body.degree;
-    const description = req.body.description;
-    const updatedEducation = new Education(
+    const blog = req.body.blog;
+    const updatedBlog = new Blog(
         id,
         order,
-        school,
-        date,
-        degree,
-        description
+        blog
     );
-    updatedEducation.save();
-    res.redirect('/admin/education');
+    updatedBlog.save();
+    res.redirect('/admin/blogs');
 };
 
 exports.postDeleteBlog = (req, res, next) => {
-    const eduId = req.body.educationId;
-    Education.deleteById(eduId);
-    res.redirect('/admin/education');
+    const blogId = req.body.blogId;
+    Blog.deleteById(blogId);
+    res.redirect('/admin/blogs');
 };
