@@ -20,30 +20,25 @@
     </nav>
 
     <section class="blog__section">
-        <div class="card blog__card">
-            <div class="blog__image">
-                <img src="https://static.toiimg.com/photo/72975551.cms">
+        <% for (let blog of blogs) { %>
+            <div class="card blog__card">
+                <div class="blog__image">
+                    <% let firstIndex = blog.blog.indexOf("http") %>
+                    <% let secondIndex = blog.blog.indexOf('"', firstIndex) %>
+                    <img src="<%= blog.blog.substring(firstIndex, secondIndex) %>">
+                </div>
+                <div class="blog__info">
+                    <ul>
+                        <% let newBlog = blog.blog.substring(0, 400).split(' ') %>
+                        <% newBlog.pop() %>
+                        <%- newBlog.join(' ') + '...' %>
+                        <li>
+                            <button>Read More</button>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="blog__info">
-                <ul>
-                    <li>
-                        <b>This is the title of my blog! </b>
-                    </li>
-                    <li>
-                        <h5>January 1st 2021</h5>
-                    </li>
-                    <li>
-                        <p>Artificial intelligence (AI) mimics human behaviour and cognitive functions 
-                            and is currently being used to bring substantial changes to the NHS. The use 
-                            of AI in the health services is on the rise, the idea is to model a real living 
-                            organism with a brain; a sensory...</p>
-                    </li>
-                    <li>
-                        <button>Read More</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <% } %>
     </section>
 
 </body>

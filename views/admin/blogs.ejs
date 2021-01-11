@@ -4,8 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    
+    <% if (blogs.length > 0) { %>
+        <div class="grid">
+            <% for (let blog of blogs) { %>
+            <article class="card blog-card">
+                <div class="card__order">
+                    <h2><%= blog.order %></h2>
+                </div>
+                <div class="card__blog">
+                    <% let newBlog = blog.blog.substring(0, 400).split(' ') %>
+                    <% newBlog.pop() %>
+                    <%- newBlog.join(' ') + '...' %>
+                </div>
+                <div class="card__actions">
+                    <a href="/admin/edit-blog/<%= blog.id %>?edit=true" class="btn">Edit</a>
+                    <br><br/>
+                    <form action="/admin/delete-blog" method="POST">
+                        <input type="hidden" value="<%= blog.id %>" name="blogId">
+                        <button class="btn" type="submit">Delete</button>                    
+                    </form>
+                </div>
+            </article>
+            <% } %>
+        </div>
+    <% } else { %>
+        <h1>No Blogs Found!</h1>
+    <% } %>
 </body>
 </html>

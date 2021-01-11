@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    
+    <main>
+        <form class="product-form" action="/admin/<% if (editing) { %>edit-blog<% } else { %>add-blog<% } %>" method="POST">
+            <div class="form-control">
+                <label for="order">Order</label>
+                <input type="number" name="order" id="order" value="<% if (editing) { %><%= blog.order %><% } %>">                
+            </div>
+            <div class="form-control">
+                <label for="blog">Blog Post</label>
+                <textarea type="text" name="blog" id="blog"><% if (editing) { %><%= blog.blog %><% } %></textarea>
+            </div>
+            <% if (editing) { %>
+                <input type="hidden" value="<%= blog.id %>" name="blogId">
+            <% } %>
+            <div class="button-control">
+                <button class="btn" type="submit"><% if (editing) { %>Update Blog Post<% } else { %>Add Blog Post<% } %></button>
+            </div>
+        </form>
+    </main>
 </body>
 </html>

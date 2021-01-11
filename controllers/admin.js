@@ -2,7 +2,7 @@ const Blog = require('../models/blog');
 
 exports.getBlogs = (req, res, next) => {
     Blog.fetchAll(blogs => {
-        res.render('admin/blog', {
+        res.render('admin/blogs', {
             pageTitle: '/Admin Blog',
             path: '/admin/blogs',
             blogs: blogs

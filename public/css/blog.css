@@ -19,6 +19,7 @@
     height: auto;
     padding: .5rem;
     border-radius: 10px;
+    margin-bottom: 4rem;
 }
 
 .blog__card .blog__image {
@@ -57,9 +58,6 @@
     color:rgb(81, 132, 167);
 }
 
-.blog__info p {
-    white-space: normal;
-}
 
 .blog__info button {
     font: inherit;
