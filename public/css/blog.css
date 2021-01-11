@@ -1,9 +1,80 @@
 .blog__section {
     height: 100rem;
     background-color:white;
-    width: 60%;
+    width: 70%;
     margin: 0 auto;
     position: relative;
     margin-top: 8rem;
     padding: 2rem;
+    border-left: 2px solid rgb(81, 132, 167, .2);
+    border-right: 2px solid rgb(81, 132, 167, .2);
+    padding: 1rem;
+}
+
+.blog__card {
+    position: relative;
+    display: table;
+    width: auto;
+    margin: 0 auto;
+    height: auto;
+    padding: .5rem;
+    border-radius: 10px;
+}
+
+.blog__card .blog__image {
+    position: relative;
+    display: table-cell;
+    width: 15rem;
+    height: inherit;
+    width: 30%;
+    padding: .5rem;
+}
+
+.blog__image img {
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+}
+
+.blog__card .blog__info {
+    position: relative;
+    height: inherit;
+    display: table-cell;
+    width: auto;
+    vertical-align: top;
+}
+
+.blog__info ul {
+    padding-inline-start: 20px;
+}
+
+.blog__info li {
+    list-style-type: none;
+}
+
+.blog__info h5 {
+    color:rgb(81, 132, 167);
+}
+
+.blog__info p {
+    white-space: normal;
+}
+
+.blog__info button {
+    font: inherit;
+    border: 1px solid rgb(81, 132, 167);
+    color: rgb(81, 132, 167);
+    background: white;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 0.25rem 1rem;
+    margin-top: .5rem;
+}
+
+.blog__info button:hover,
+.blog__info button:active {
+background-color: rgb(81, 132, 167);
+color: white;
 }
