@@ -15,11 +15,15 @@
                 <input type="number" name="order" id="order" value="<% if (editing) { %><%= blog.order %><% } %>">                
             </div>
             <div class="form-control">
+                <label for="title">Blog Title</label>
+                <input type="text" name="title" id="title" value="<% if (editing) { %><%= blog.title %><% } %>">                
+            </div>
+            <div class="form-control">
                 <label for="blog">Blog Post</label>
-                <textarea type="text" name="blog" id="blog"><% if (editing) { %><%= blog.blog %><% } %></textarea>
+                <textarea type="text" name="blog" id="blog"><% if (editing) { %><%= blog.blog %><% } else { %> <li><h5></h5></li><li><p></p></li><li><img src=""></li> <% } %></textarea>
             </div>
             <% if (editing) { %>
-                <input type="hidden" value="<%= blog.id %>" name="blogId">
+                <input type="hidden" value="<%= blog.title %>" name="blogTitle">
             <% } %>
             <div class="button-control">
                 <button class="btn" type="submit"><% if (editing) { %>Update Blog Post<% } else { %>Add Blog Post<% } %></button>

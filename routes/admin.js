@@ -12,7 +12,7 @@ router.get('/admin/add-blog', adminController.getAddBlog);
 
 router.post('/admin/add-blog', adminController.postAddBlog);
 
-router.get('/admin/edit-blog/:blogId', adminController.getEditBlog);
+router.get('/admin/edit-blog/:blogTitle', adminController.getEditBlog);
 
 router.post('/admin/edit-blog', adminController.postEditBlog);
 

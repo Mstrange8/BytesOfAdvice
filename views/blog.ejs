@@ -19,25 +19,69 @@
         </ul>
     </nav>
 
+    <section class="side__bar">
+        <div class="side__title">
+            Blogs
+        </div>
+        <hr>
+        <ul>
+            <% for (let blog of blogs) { %>
+                <li>
+                    <a href="/blog/<%= blog.title %>"><%= blog.title %></a>
+                </li>
+                <br/>
+            <% } %>
+        </ul>
+    </section>
+
     <section class="blog__section">
-        <% for (let blog of blogs) { %>
-            <div class="card blog__card">
-                <div class="blog__image">
-                    <% let firstIndex = blog.blog.indexOf("http") %>
-                    <% let secondIndex = blog.blog.indexOf('"', firstIndex) %>
-                    <img src="<%= blog.blog.substring(firstIndex, secondIndex) %>">
-                </div>
-                <div class="blog__info">
-                    <ul>
-                        <% let newBlog = blog.blog.substring(0, 400).split(' ') %>
-                        <% newBlog.pop() %>
-                        <%- newBlog.join(' ') + '...' %>
-                        <li>
-                            <button>Read More</button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+
+        <% if (blogs.length < 10) { %>
+            <% for (let blog of blogs) { %>
+                <form class="card blog__card" action="/blog/<%= blog.title %>" method="POST">
+                    <div class="blog__image">
+                        <% let firstIndex = blog.blog.indexOf("http") %>
+                        <% let secondIndex = blog.blog.indexOf('"', firstIndex) %>
+                        <img src="<%= blog.blog.substring(firstIndex, secondIndex) %>">
+                    </div>
+                    <div class="blog__info">
+                        <ul>
+                            <li>
+                                <b><%= blog.title %></b>
+                            </li>
+                            <% let newBlog = blog.blog.substring(0, 400).split(' ') %>
+                            <% newBlog.pop() %>
+                            <%- newBlog.join(' ') + '...' %>
+                            <li>
+                                <button type="submit">Read More</button>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            <% } %>
+        <% } else { %>
+            <% for (var i = 0; i < 10; i++ ) { %>
+                <form class="card blog__card" action="/blog/<%= blog.title %>" method="POST">
+                    <div class="blog__image">
+                        <% let firstIndex = blogs[i].blog.indexOf("http") %>
+                        <% let secondIndex = blogs[i].blog.indexOf('"', firstIndex) %>
+                        <img src="<%= blogs[i].blog.substring(firstIndex, secondIndex) %>">
+                    </div>
+                    <div class="blog__info">
+                        <ul>
+                            <li>
+                                <b><%= blogs[i].title %></b>
+                            </li>
+                            <% let newBlog = blogs[i].blog.substring(0, 400).split(' ') %>
+                            <% newBlog.pop() %>
+                            <%- newBlog.join(' ') + '...' %>
+                            <li>
+                                <button type="submit">Read More</button>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            <% } %>
         <% } %>
     </section>
 

@@ -105,14 +105,14 @@ color: white;
     padding: 1rem;
 }
 
-.blog-card .card__degree {
-    max-width: 30rem;
-    height: auto;
-    width: 40%;
-    position: relative; 
+.blog-card .card__title {
+    width: 70%;
+    min-width: 10rem;
     float: left;
-    padding: 1rem;
+    padding-left: 1rem;
+    padding-top: 1rem;
 }
+
 
 .blog-card .card__actions {
     min-width: 5rem;

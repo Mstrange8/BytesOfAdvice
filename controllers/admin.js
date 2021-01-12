@@ -20,8 +20,9 @@ exports.getAddBlog = (req, res, next) => {
 
 exports.postAddBlog = (req, res, next) => {
     const order = req.body.order;
+    const title = req.body.title;
     const blog = req.body.blog;
-    const newBlog = new Blog(null, order, blog);
+    const newBlog = new Blog(order, title, blog);
     newBlog.save();
     res.redirect('/admin/blogs');
 };
@@ -31,8 +32,8 @@ exports.getEditBlog = (req, res, next) => {
     if (!editMode) {
         res.redirect('/');
     }
-    const blogId = req.params.blogId;
-    Blog.findById(blogId, blog => {
+    const title = req.params.blogTitle;
+    Blog.findByTitle(title, blog => {
         if (!blog) {
             return res.redirect('/');
         }
@@ -46,12 +47,12 @@ exports.getEditBlog = (req, res, next) => {
 };
 
 exports.postEditBlog = (req, res, next) => {
-    const id = req.body.blogId;
     const order = req.body.order;
+    const title = req.body.title;
     const blog = req.body.blog;
     const updatedBlog = new Blog(
-        id,
         order,
+        title,
         blog
     );
     updatedBlog.save();
@@ -59,7 +60,7 @@ exports.postEditBlog = (req, res, next) => {
 };
 
 exports.postDeleteBlog = (req, res, next) => {
-    const blogId = req.body.blogId;
-    Blog.deleteById(blogId);
+    const blogTitle = req.body.title;
+    Blog.deleteByTitle(blogTitle);
     res.redirect('/admin/blogs');
 };
