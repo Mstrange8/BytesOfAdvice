@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
+    <div class="card__button">
+        <a href="/" class="btn">Home</a>
+        <a href="/admin/add-blog" class="btn">New Blog</a>
+    </div>
+    <hr>
     <% if (blogs.length > 0) { %>
         <div class="grid">
             <% for (let blog of blogs) { %>

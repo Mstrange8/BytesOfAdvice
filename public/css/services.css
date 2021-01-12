@@ -1,9 +1,45 @@
 .services__section {
-    height: 100rem;
+    height: auto;
     background-color:white;
-    width: 60%;
+    width: 100%;
     margin: 0 auto;
     position: relative;
     margin-top: 8rem;
-    padding: 2rem;
+}
+
+.services__section .intro__card {
+    width: 100%;
+    background-color: rgb(66, 66, 66, .9);
+    height: auto;
+    text-align: center;
+    padding: 5% 0;
+}
+
+.services__section .intro__card h1 {
+    color: white;
+    width: 60%;
+    margin: 0 auto;
+    font-weight: 500;
+}
+
+.services__section .intro__card span {
+    color: rgb(81, 132, 167);
+}
+
+.services__section .description__card {
+    width: 100%;
+    background-color:rgba(43, 93, 126, 0.1);
+    height: 20rem;
+}
+
+.services__section .example__card {
+    width: 100%;
+    background-color: white;
+    height: 20rem;
+}
+
+.services__section .contact__card {
+    width: 100%;
+    background-color:rgba(43, 93, 126, 0.1);
+    height: 20rem;
 }

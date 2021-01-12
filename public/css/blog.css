@@ -1,5 +1,5 @@
 .side__bar {
-    height: 100rem;
+    height: auto;
     background-color: white;
     position: relative;
     width: auto;
@@ -24,7 +24,7 @@ list-style-type: disc;
 }
 
 .blog__section {
-    height: 100rem;
+    height: auto;
     background-color:white;
     width: 60%;
     margin: 0 auto;
