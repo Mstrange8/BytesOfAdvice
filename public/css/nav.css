@@ -5,7 +5,7 @@ body {
 }
 
 #mainNav {
-    height: 5em;
+    height: 6em;
     background-color: #fff;
     overflow: hidden;
     position: fixed;
@@ -13,7 +13,20 @@ body {
     width: 100%;
     z-index: 1;
     border-bottom: 1px solid rgb(228, 228, 228);
+    box-shadow: 0 0 7px rgba(0, 0, 0, .1);
     padding-bottom: 1em;
+}
+
+#serviceNav {
+    height: 6em;
+    background-color: #fff;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    padding-bottom: 1em;
+    box-shadow: 0 0 7px rgba(0, 0, 0, .1);
 }
 
 .header__logo{
@@ -38,7 +51,7 @@ body {
     display: inline-block;
     padding-left: 2rem;
     padding-right: 2rem;
-    font-size: 1rem;
+    font-size: 1.25rem;
 }
 
 a {
