@@ -1,9 +1,18 @@
 const Blog = require('../models/blog');
 
+
+// Admin Controllers
+exports.getAdmin = (req, res, next) => {
+    res.render('admin/admin', {
+       pageTitle: 'Login',
+       path: '/admin' 
+    });
+};
+
 exports.getBlogs = (req, res, next) => {
     Blog.fetchAll(blogs => {
         res.render('admin/blogs', {
-            pageTitle: '/Admin Blog',
+            pageTitle: 'Admin Blog',
             path: '/admin/blogs',
             blogs: blogs
         });
@@ -60,7 +69,7 @@ exports.postEditBlog = (req, res, next) => {
 };
 
 exports.postDeleteBlog = (req, res, next) => {
-    const blogTitle = req.body.title;
+    const blogTitle = req.body.blogTitle;
     Blog.deleteByTitle(blogTitle);
     res.redirect('/admin/blogs');
 };

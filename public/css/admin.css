@@ -19,10 +19,43 @@ form {
   display: inline;
 }
 
+.header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: #00695c;
+    height: 5rem;
+    vertical-align: middle;
+}
+
+.header a {
+    position: relative;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    font-size: x-large;
+    margin: auto 2rem;
+}
+
+.header .home-link {
+    margin-left: auto;
+}
+
+.header form {
+    position: relative;
+    margin: auto 2rem;
+}
+
+.header button {
+    color: rgba(255, 255, 255, 0.75);
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    font-size: x-large;
+    outline: none;
+}
 
 .form-control {
     margin: 1rem 0;
-  }
+}
   
 .form-control label,
 .form-control input,
@@ -52,6 +85,13 @@ form {
 
 .product-form {
     max-width: 70%;
+    margin: auto;
+    display: block;
+}
+
+.login-form {
+    width: 30rem;
+    max-width: 90%;
     margin: auto;
     display: block;
 }

@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    <div class="card__button">
-        <a href="/" class="btn">Home</a>
-        <a href="/admin/add-blog" class="btn">New Blog</a>
-    </div>
-    <hr>
+    <header class="header">
+        <a href="/admin/add-blog">Add Blog</a>
+        <a class="home-link" href="/">Home</a>
+        <form action="/logout?_method=DELETE" method="POST">
+            <button type="submit">Log Out</button>
+        </form>
+    </header>
     <% if (blogs.length > 0) { %>
         <div class="grid">
             <% for (let blog of blogs) { %>
@@ -24,9 +26,17 @@
                     <b><%= blog.title %></b>
                 </div>
                 <div class="card__blog">
-                    <% let newBlog = blog.blog.substring(0, 400).split(' ') %>
-                    <% newBlog.pop() %>
-                    <%- newBlog.join(' ') + '...' %>
+                    <% firstP = blog.blog.indexOf("<p>") %>
+                    <% lastIndex = blog.blog.indexOf("<", firstP + 30) %>
+                    <% if (lastIndex > (firstP + 403)) { %>
+                        <% let newBlog = blog.blog.substring(firstP + 3, firstP + 403).split(' ') %>
+                        <% newBlog.pop() %>
+                        <%- newBlog.join(' ') + '...' %>
+                    <% } else { %>
+                        <% let newBlog = blog.blog.substring(firstP + 3, lastIndex-1).split(' ') %>
+                        <% newBlog.pop() %>
+                        <%- newBlog.join(' ') + '...' %>
+                    <% } %>
                 </div>
                 <div class="card__actions">
                     <a href="/admin/edit-blog/<%= blog.title %>?edit=true" class="btn">Edit</a>

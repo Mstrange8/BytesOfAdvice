@@ -34,8 +34,7 @@
         </ul>
     </section>
 
-    <section class="blog__section">
-
+    <section class="blog__section" id="mainBlogs">
         <% if (blogs.length < 10) { %>
             <% for (let blog of blogs) { %>
                 <form class="card blog__card" action="/blog/<%= blog.title %>" method="POST">
@@ -49,9 +48,23 @@
                             <li>
                                 <b><%= blog.title %></b>
                             </li>
-                            <% let newBlog = blog.blog.substring(0, 400).split(' ') %>
-                            <% newBlog.pop() %>
-                            <%- newBlog.join(' ') + '...' %>
+                            <li>
+                                <% firstH5 = blog.blog.indexOf("<h5>") %>
+                                <% secondH5 = blog.blog.indexOf("</h5>") %>
+                                <% let newDate = blog.blog.substring(firstH5, secondH5 + 5) %>
+                                <%- newDate %>
+                            </li>
+                            <% firstP = blog.blog.indexOf("<p>") %>
+                            <% lastIndex = blog.blog.indexOf("<", firstP + 30) %>
+                            <% if (lastIndex > (firstP + 380)) { %>
+                                <% let newBlog = blog.blog.substring(firstP + 3, firstP + 380).split(' ') %>
+                                <% newBlog.pop() %>
+                                <%- newBlog.join(' ') + '...' %>
+                            <% } else { %>
+                                <% let newBlog = blog.blog.substring(firstP + 3, lastIndex-1).split(' ') %>
+                                <% newBlog.pop() %>
+                                <%- newBlog.join(' ') + '...' %> 
+                            <% } %>
                             <li>
                                 <button type="submit">Read More</button>
                             </li>
@@ -72,9 +85,23 @@
                             <li>
                                 <b><%= blogs[i].title %></b>
                             </li>
-                            <% let newBlog = blogs[i].blog.substring(0, 400).split(' ') %>
-                            <% newBlog.pop() %>
-                            <%- newBlog.join(' ') + '...' %>
+                            <li>
+                                <% firstH5 = blogs[i].blog.indexOf("<h5>") %>
+                                <% secondH5 = blogs[i].blog.indexOf("</h5>") %>
+                                <% let newDate = blogs[i].blog.substring(firstH5, secondH5 + 5) %>
+                                <%- newDate %>
+                            </li>
+                            <% firstP = blogs[i].blog.indexOf("<p>") %>
+                            <% lastIndex = blogs[i].blog.indexOf("<", firstP + 30) %>
+                            <% if (lastIndex > (firstP + 380)) { %>
+                                <% let newBlog = blogs[i].blog.substring(firstP + 3, firstP + 380).split(' ') %>
+                                <% newBlog.pop() %>
+                                <%- newBlog.join(' ') + '...' %>
+                            <% } else { %>
+                                <% let newBlog = blogs[i].blog.substring(firstP + 3, lastIndex-1).split(' ') %>
+                                <% newBlog.pop() %>
+                                <%- newBlog.join(' ') + '...' %> 
+                            <% } %>
                             <li>
                                 <button type="submit">Read More</button>
                             </li>
@@ -84,6 +111,6 @@
             <% } %>
         <% } %>
     </section>
-
+    <footer class="footer small text-center text-black-50"><div class="container">Copyright © BytesOfAdvice 2021</div></footer>
 </body>
 </html>
