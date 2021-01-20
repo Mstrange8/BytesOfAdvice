@@ -27,7 +27,7 @@
         <ul>
             <% for (let blog of blogs) { %>
                 <li>
-                    <a href="/blog/<%= blog.title %>"><%= blog.title %></a>
+                    <a href="/blog/<%= blog._id %>"><%= blog.title %></a>
                 </li>
                 <br/>
             <% } %>
@@ -37,7 +37,7 @@
     <section class="blog__section" id="mainBlogs">
         <% if (blogs.length < 10) { %>
             <% for (let blog of blogs) { %>
-                <form class="card blog__card" action="/blog/<%= blog.title %>" method="POST">
+                <form class="card blog__card" action="/blog/<%= blog._id %>" method="POST">
                     <div class="blog__image">
                         <% let firstIndex = blog.blog.indexOf("http") %>
                         <% let secondIndex = blog.blog.indexOf('"', firstIndex) %>
@@ -74,7 +74,7 @@
             <% } %>
         <% } else { %>
             <% for (var i = 0; i < 6; i++ ) { %>
-                <form class="card blog__card" action="/blog/<%= blogs[i].title %>" method="POST">
+                <form class="card blog__card" action="/blog/<%= blogs[i]._id %>" method="POST">
                     <div class="blog__image">
                         <% let firstIndex = blogs[i].blog.indexOf("http") %>
                         <% let secondIndex = blogs[i].blog.indexOf('"', firstIndex) %>

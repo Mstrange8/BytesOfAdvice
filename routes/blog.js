@@ -10,8 +10,8 @@ router.get('/', blogController.getBlogs);
 
 router.post('/', blogController.getBlogs);
 
-router.get('/blog/:blogTitle', blogController.getBlogPage);
+router.get('/blog/:blogId', blogController.getBlogPage);
 
-router.post('/blog/:blogTitle', blogController.getBlogPage);
+router.post('/blog/:blogId', blogController.getBlogPage);
 
 module.exports = router;

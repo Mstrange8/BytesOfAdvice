@@ -2,17 +2,18 @@ const getDb = require('../util/database').getDb;
 const mongo = require('mongodb');
 
 class Blog {
-    constructor(order, title, blog) {
+    constructor(order, title, blog, id) {
         this.order = order;
         this.title = title;
         this.blog = blog;
+        this._id = id ? new mongo.ObjectId(id) : null; 
     }
 
     save() {
         const db = getDb();
         let dbOp;
-        if (db.Collection.find({"title": this.title}.limit(1).size()) ) {
-            dbOp = db.collection('blog').updateOne({ "title": this.title }, {$set: this});
+        if (this._id) {
+            dbOp = db.collection('blog').updateOne({ _id: this._id }, {$set: this});
         } else {
             dbOp = db.collection('blog').insertOne(this);
         }
@@ -39,7 +40,7 @@ class Blog {
         });
     }
 
-    static findById(blogId) {
+    static findByTitle(blogId) {
         const db = getDb();
         return db
         .collection('blog')
@@ -54,7 +55,7 @@ class Blog {
         });
     }
 
-    static deleteById(blogId) {
+    static deleteByTitle(blogId) {
         const db = getDb();
         return db
         .collection('blog')

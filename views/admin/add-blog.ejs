@@ -23,7 +23,7 @@
                 <textarea type="text" name="blog" id="blog"><% if (editing) { %><%= blog.blog %><% } else { %> <li><h5></h5></li><li><p></p></li><li><img src=""></li> <% } %></textarea>
             </div>
             <% if (editing) { %>
-                <input type="hidden" value="<%= blog.title %>" name="blogTitle">
+                <input type="hidden" value="<%= blog._id %>" name="blogId">
             <% } %>
             <div class="button-control">
                 <button class="btn" type="submit"><% if (editing) { %>Update Blog Post<% } else { %>Add Blog Post<% } %></button>

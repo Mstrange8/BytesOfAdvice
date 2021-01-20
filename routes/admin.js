@@ -32,7 +32,7 @@ router.get('/admin/add-blog', checkAuthenticated, adminController.getAddBlog);
 
 router.post('/admin/add-blog', checkAuthenticated, adminController.postAddBlog);
 
-router.get('/admin/edit-blog/:blogTitle', checkAuthenticated, adminController.getEditBlog);
+router.get('/admin/edit-blog/:blogId', checkAuthenticated, adminController.getEditBlog);
 
 router.post('/admin/edit-blog', checkAuthenticated, adminController.postEditBlog);
 

@@ -1,11 +1,11 @@
 const Blog = require('../models/blog');
 
 exports.getBlogPage = (req, res, next) => {
-    const blogTitle = req.params.blogTitle;        
-    Blog.findByTitle(blogTitle).then(blog => {
+    const blogId = req.params.blogId;        
+    Blog.findByTitle(blogId).then(blog => {
         res.render('chosen-blog', {
             pageTitle: 'Blog',
-            path: '/' + blogTitle,
+            path: '/' + blogId,
             blog: blog
         });
     })

@@ -34,7 +34,7 @@ exports.postAddBlog = (req, res, next) => {
     const order = req.body.order;
     const title = req.body.title;
     const blog = req.body.blog;
-    const newBlog = new Blog(order, title, blog);
+    const newBlog = new Blog(order, title, blog, null);
     newBlog.save()
     .then(() => {
         res.redirect('/admin/blogs');
@@ -49,9 +49,11 @@ exports.getEditBlog = (req, res, next) => {
     if (!editMode) {
         res.redirect('/');
     }
-    const title = req.params.blogTitle;
-    Blog.findByTitle(title)
+    const blogId = req.params.blogId;
+    console.log(blogId);
+    Blog.findByTitle(blogId)
         .then(blog => {
+        console.log(blog);
         res.render('admin/add-blog', {
             pageTitle: 'Edit Blog',
             path: '/admin/edit-blog',
@@ -65,13 +67,15 @@ exports.getEditBlog = (req, res, next) => {
 };
 
 exports.postEditBlog = (req, res, next) => {
+    const blogId = req.body.blogId;
     const order = req.body.order;
     const title = req.body.title;
     const blog = req.body.blog;
     const updatedBlog = new Blog(
         order,
         title,
-        blog
+        blog,
+        blogId
     );
     updatedBlog.save()
     .then(() => {
@@ -83,8 +87,8 @@ exports.postEditBlog = (req, res, next) => {
 };
 
 exports.postDeleteBlog = (req, res, next) => {
-    const blogTitle = req.body.blogTitle;
-    Blog.deleteByTitle(blogTitle)
+    const blogId = req.body.blogId;
+    Blog.deleteByTitle(blogId)
     .then(() => {
         res.redirect('/admin/blogs');
     })
