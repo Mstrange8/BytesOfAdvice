@@ -54,17 +54,19 @@
                                 <% let newDate = blog.blog.substring(firstH5, secondH5 + 5) %>
                                 <%- newDate %>
                             </li>
-                            <% firstP = blog.blog.indexOf("<p>") %>
-                            <% lastIndex = blog.blog.indexOf("<", firstP + 30) %>
-                            <% if (lastIndex > (firstP + 380)) { %>
-                                <% let newBlog = blog.blog.substring(firstP + 3, firstP + 380).split(' ') %>
-                                <% newBlog.pop() %>
-                                <%- newBlog.join(' ') + '...' %>
-                            <% } else { %>
-                                <% let newBlog = blog.blog.substring(firstP + 3, lastIndex-1).split(' ') %>
-                                <% newBlog.pop() %>
-                                <%- newBlog.join(' ') + '...' %> 
-                            <% } %>
+                            <div class="blog-details">
+                                <% firstP = blog.blog.indexOf("<p>") %>
+                                <% lastIndex = blog.blog.indexOf("<", firstP + 30) %>
+                                <% if (lastIndex > (firstP + 380)) { %>
+                                    <% let newBlog = blog.blog.substring(firstP + 3, firstP + 380).split(' ') %>
+                                    <% newBlog.pop() %>
+                                    <%- newBlog.join(' ') + '...' %>
+                                <% } else { %>
+                                    <% let newBlog = blog.blog.substring(firstP + 3, lastIndex-1).split(' ') %>
+                                    <% newBlog.pop() %>
+                                    <%- newBlog.join(' ') + '...' %> 
+                                <% } %>
+                            </div>
                             <li>
                                 <button type="submit">Read More</button>
                             </li>
@@ -91,17 +93,19 @@
                                 <% let newDate = blogs[i].blog.substring(firstH5, secondH5 + 5) %>
                                 <%- newDate %>
                             </li>
-                            <% firstP = blogs[i].blog.indexOf("<p>") %>
-                            <% lastIndex = blogs[i].blog.indexOf("<", firstP + 30) %>
-                            <% if (lastIndex > (firstP + 380)) { %>
-                                <% let newBlog = blogs[i].blog.substring(firstP + 3, firstP + 380).split(' ') %>
-                                <% newBlog.pop() %>
-                                <%- newBlog.join(' ') + '...' %>
-                            <% } else { %>
-                                <% let newBlog = blogs[i].blog.substring(firstP + 3, lastIndex-1).split(' ') %>
-                                <% newBlog.pop() %>
-                                <%- newBlog.join(' ') + '...' %> 
-                            <% } %>
+                            <div class="blog-details">
+                                <% firstP = blogs[i].blog.indexOf("<p>") %>
+                                <% lastIndex = blogs[i].blog.indexOf("<", firstP + 30) %>
+                                <% if (lastIndex > (firstP + 380)) { %>
+                                    <% let newBlog = blogs[i].blog.substring(firstP + 3, firstP + 380).split(' ') %>
+                                    <% newBlog.pop() %>
+                                    <%- newBlog.join(' ') + '...' %>
+                                <% } else { %>
+                                    <% let newBlog = blogs[i].blog.substring(firstP + 3, lastIndex-1).split(' ') %>
+                                    <% newBlog.pop() %>
+                                    <%- newBlog.join(' ') + '...' %> 
+                                <% } %>
+                            </div>     
                             <li>
                                 <button type="submit">Read More</button>
                             </li>
