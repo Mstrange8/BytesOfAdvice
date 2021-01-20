@@ -1,25 +1,7 @@
-const fs = require('fs');
-const path = require('path');
-const { exit } = require('process');
+const getDb = require('../util/database').getDb;
+const mongo = require('mongodb');
 
-const p = path.join(
-    path.dirname(require.main.filename),
-    'data',
-    'blog.json'
-);
-
-
-const getBlogsFromFile = (callback) => {
-    fs.readFile(p, (err, fileContent) => {
-        if (err) {
-            callback([]);
-        } else {
-            callback(JSON.parse(fileContent));
-        }
-    });
-}
-
-module.exports = class Blog {
+class Blog {
     constructor(order, title, blog) {
         this.order = order;
         this.title = title;
@@ -27,47 +9,64 @@ module.exports = class Blog {
     }
 
     save() {
-        getBlogsFromFile(blogs => {
-            if (blogs.map(blog => blog.title).includes(this.title)) {
-                const existingBlogIndex = blogs.findIndex(blog => blog.title === this.title);
-                const updatedBlogs = [...blogs];
-                updatedBlogs[existingBlogIndex] = this;
-                fs.writeFile(p, JSON.stringify(updatedBlogs.sort(function(first, second) {
-                    return first.order - second.order
-                })), err => {
-                    console.log(err);
-                });
-            } else {
-                blogs.push(this);
-                fs.writeFile(p, JSON.stringify(blogs.sort(function(first, second) {
-                    return first.order - second.order
-                })), err => {
-                    console.log(err);
-                });
-            } 
+        const db = getDb();
+        let dbOp;
+        if (db.Collection.find({"title": this.title}.limit(1).size()) ) {
+            dbOp = db.collection('blog').updateOne({ "title": this.title }, {$set: this});
+        } else {
+            dbOp = db.collection('blog').insertOne(this);
+        }
+        return dbOp
+        .then(result => {
+            console.log(result);
+        })
+        .catch(err => {
+            console.log(err);
         });
     }
 
-    static deleteByTitle(title) {
-        getBlogsFromFile(blogs => {
-            const updatedBlog = blogs.filter(blog => blog.title !== title);
-            fs.writeFile(p, JSON.stringify(updatedBlog.sort(function(first, second) {
-                return first.order - second.order
-            })), err => {
-                console.log(err);
-            });
+    static fetchAll() {
+        const db = getDb();
+        return db
+        .collection('blog')
+        .find()
+        .toArray()
+        .then(blog => {
+            return blog;
+        })
+        .catch(err=> {
+            console.log(err);
         });
     }
 
-    static fetchAll(callback) {
-        getBlogsFromFile(callback);
-    }
-
-    static findByTitle(title, callback) {
-        getBlogsFromFile(blogs => {
-            const blog = blogs.find(p => p.title === title);
-            callback(blog);
+    static findById(blogId) {
+        const db = getDb();
+        return db
+        .collection('blog')
+        .find({ _id: new mongo.ObjectID(blogId) })
+        .next()
+        .then(blog => {
+            console.log(blog);
+            return blog;
+        })
+        .catch(err => {
+            console.log(err);
         });
     }
 
-};
+    static deleteById(blogId) {
+        const db = getDb();
+        return db
+        .collection('blog')
+        .deleteOne({_id: new mongo.ObjectId(blogId)})
+        .then(result => {
+            console.log('deleted')
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    }
+}
+
+module.exports = Blog;
+
