@@ -14,7 +14,9 @@ exports.getBlogs = (req, res, next) => {
         res.render('admin/blogs', {
             pageTitle: 'Admin Blog',
             path: '/admin/blogs',
-            blogs: blogs
+            blogs: blogs.sort(function(first, second) {
+                return first.order - second.order
+            })
         });
     })
     .catch(err => {

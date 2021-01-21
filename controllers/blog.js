@@ -19,7 +19,9 @@ exports.getBlogs = (req, res, next) => {
         res.render('blog', {
             pageTitle: 'Blog',
             path: '/',
-            blogs: blogs
+            blogs: blogs.sort(function(first, second) {
+                return first.order - second.order
+            })
         });
     })
     .catch(err => {
